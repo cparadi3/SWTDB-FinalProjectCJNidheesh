@@ -7,7 +7,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<build>
-		<sourceDirectory>src/main/java</sourceDirectory>
+  		<testSourceDirectory>src/test/java</testSourceDirectory>
+  		<sourceDirectory>src/main/java</sourceDirectory>
 		<finalName>onlinebookstore</finalName>
 		<plugins>
 			<plugin>
@@ -76,6 +77,19 @@
 					<target>11</target>
 				</configuration>
 			</plugin>
+			<plugin>
+  				<groupId>org.apache.maven.plugins</groupId>
+  				<artifactId>maven-surefire-plugin</artifactId>
+  				<version>3.2.5</version>
+  				<configuration>
+   				<!-- Ensure it picks up JUnit Jupiter tests -->
+    			<includes>
+      				<include>**/*Test.java</include>
+      				<include>**/*Tests.java</include>
+      				<include>**/*TestCase.java</include>
+    			</includes>
+  				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<dependencies>
@@ -84,14 +98,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.3.7</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
-		<dependency>
-   			<groupId>org.junit.jupiter</groupId>
-    		<artifactId>junit-jupiter-api</artifactId>
-    		<version>5.8.2</version>
-    		<scope>test</scope>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
