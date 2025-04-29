@@ -233,6 +233,8 @@ public class guiTests{
        WebElement addBookToCart = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div[2]/form/input[3]"));
        addBookToCart.click();
        driver.findElement(USER_CART).click();
+       List<WebElement> elems = driver.findElements(By.xpath("/html/body/table/tbody/tr"));
+       assertFalse(elems.isEmpty());
        WebElement cartBookID = driver.findElement(By.xpath("/html/body/table/tbody/tr[1]/th"));
        WebElement cartBookTitle = driver.findElement(By.xpath("/html/body/table/tbody/tr[1]/td[1]"));
        WebElement cartAuthor = driver.findElement(By.xpath("/html/body/table/tbody/tr[1]/td[2]"));
@@ -256,7 +258,9 @@ public class guiTests{
        WebElement addBookToCart = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div[2]/form/input[3]"));
        addBookToCart.click();
        driver.findElement(USER_CART).click();
-       WebElement decreaseBookQuantity = driver.findElement(By.xpath("/html/body/table/tbody/tr[1]/td[4]/form/button[1]"));
+       List<WebElement> elems = driver.findElements(By.xpath("/html/body/table/tbody/tr[1]/td[4]/form/button[1]"));
+       assertFalse(elems.isEmpty());
+       WebElement decreaseBookQuantity =  wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/table/tbody/tr[1]/td[4]/form/button[1]")));
        decreaseBookQuantity.click();
        WebElement noItemsText = driver.findElement(By.xpath("/html/body/table/tbody/tr/th"));
        String emptyCart = noItemsText.getText();
@@ -271,8 +275,10 @@ public class guiTests{
        driver.findElement(USER_AVAILABLE_BOOKS).click();
        WebElement addBookToCart = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div[2]/form/input[3]"));
        addBookToCart.click();
-       driver.findElement(USER_CART).click();
-       WebElement proceedToPaymentBtn = driver.findElement(By.xpath("/html/body/div[2]/form/input"));
+       driver.findElement(By.xpath("//*[@id=\"cart\"]")).click();
+       List<WebElement> elems = driver.findElements(By.xpath("/html/body/div[2]/form/input"));
+       assertFalse(elems.isEmpty());
+       WebElement proceedToPaymentBtn =  wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[2]/form/input")));
        proceedToPaymentBtn.click();
        WebElement payAndOrderBtn = driver.findElement(By.xpath("/html/body/div/div[2]/div/div/form/input"));
        String currentURL = driver.getCurrentUrl();
@@ -289,7 +295,9 @@ public class guiTests{
        WebElement addBookToCart = driver.findElement(By.xpath("/html/body/div[2]/div[1]/div[1]/div[2]/div[2]/form/input[3]"));
        addBookToCart.click();
        driver.findElement(USER_CART).click();
-       WebElement proceedToPaymentBtn = driver.findElement(By.xpath("/html/body/div[2]/form/input"));
+       List<WebElement> elems = driver.findElements(By.xpath("/html/body/div[2]/form/input"));
+       assertFalse(elems.isEmpty());
+       WebElement proceedToPaymentBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[2]/form/input")));;
        proceedToPaymentBtn.click();
        WebElement nameField = driver.findElement(By.xpath("//*[@id=\"fname\"]"));
        nameField.sendKeys("name");
@@ -331,6 +339,8 @@ public class guiTests{
        String totalBooks = textArray[1];
        int bookTotal = Integer.valueOf(totalBooks);
        driver.findElement(USER_CART).click();
+       List<WebElement> elems = driver.findElements(By.xpath("/html/body/div[2]/form/input"));
+       assertFalse(elems.isEmpty());
        WebElement proceedBtn = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div[2]/form/input")));
        proceedBtn.click();
        fillCheckoutForm();
